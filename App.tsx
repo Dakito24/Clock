@@ -1,11 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Clock from './src/Clock/clock'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { StyleSheet } from 'react-native';
+import Router from "./src/navigation/navigation"
 
 export default function App() {
   return (
-    <Clock></Clock>
+    <Router></Router>
   );
 }
 
