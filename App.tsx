@@ -1,14 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import StopWatch from './src/StopWatch/stopwatch'
+import Clock from './src/Clock/clock'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-
-      <StopWatch></StopWatch>
-    </View>
+    <Clock></Clock>
   );
 }
 
