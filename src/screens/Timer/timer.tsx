@@ -1,31 +1,25 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, Pressable } from "react-native";
+import { Text, View, StyleSheet, Button } from "react-native";
 
-export default function Clock({ navigation }: any) {
+export default function Timer({ navigation }: any) {
   return (
     <View style={styles.parentContainer}>
       <View style={styles.bodyContainer}>
-        <Text style={styles.baseText}>Clock</Text>
+        <Text style={styles.baseText}>Timer</Text>
       </View>
       <View style={styles.navButtonContainer}>
-        <Pressable
+        <Button
+          title="Clock"
           onPress={() => navigation.navigate("Clock")}
-          style={styles.navButton}
-        >
-          <Text style={styles.baseText}>Clock</Text>
-        </Pressable>
-        <Pressable
+        />
+        <Button
+          title="StopWatch"
           onPress={() => navigation.navigate("StopWatch")}
-          style={styles.navButton}
-        >
-          <Text style={styles.baseText}>StopWatch</Text>
-        </Pressable>
-        <Pressable
+        />
+        <Button
+          title="Timer"
           onPress={() => navigation.navigate("Timer")}
-          style={styles.navButton}
-        >
-          <Text style={styles.baseText}>Timer</Text>
-        </Pressable>
+        />
       </View>
     </View>
   );
@@ -42,14 +36,11 @@ const styles = StyleSheet.create({
   },
   navButtonContainer: {
     // Remove styling that overlaps with parent container styling
-    flexDirection: "row", // Arrange buttons horizontally in a line
-    justifyContent: "space-evenly",
+    justifyContent: "flex-end", // Align button at the bottom
+    alignItems: "center",
     backgroundColor: "#000000",
     width: "100%",
     height: 30,
-  },
-  navButton: {
-    flex: 1,
   },
   baseText: {
     color: "#f03f44",
