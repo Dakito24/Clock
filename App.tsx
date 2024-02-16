@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import Router from "./src/navigation/navigation"
+import Router from "./src/navigation/nav-routing"
 import { Text } from "react-native";
 
 export default function App() {
@@ -7,12 +7,3 @@ export default function App() {
     <Router></Router>
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });

@@ -1,28 +1,77 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
-export default function StopWatch( {navigation} :any ) {
-  const [count, setCount] = useState(0);
+import React, { useState, useEffect, useRef } from "react";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 
+export default function StopWatch({ navigation }: any) {
+  const [count, setCount] = useState(0);
+  const [isRunning, setRunning] = useState(false);
+
+  useEffect(() => {
+    console.log("useEffect", isRunning);
+    let intervalId: NodeJS.Timeout | undefined;
+
+    if (isRunning) {
+      intervalId = setInterval(() => {
+        setCount((count) => count + 1);
+      }, 1000);
+    } else {
+      clearInterval(intervalId);
+    }
+    return () => clearInterval(intervalId);
+  }, [isRunning]);
+
+  const formatCount = (count: number) => {
+    const seconds = count % 60;
+    const minutes = Math.floor(count / 60) % 60;
+    const hours = Math.floor(count / 3600);
+
+    return `${hours.toString().padStart(2, "0")}:${minutes
+      .toString()
+      .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  };
   return (
     <View style={styles.parentContainer}>
-    <View style={styles.bodyContainer}>
-    <Text style={styles.baseText}>StopWatch</Text>
-      <Text  style={styles.baseText}>{count}</Text>
-      <Button title= "Increment Count" onPress={() => setCount(count + 1)} />
-    </View>
-    <View style={styles.navButtonContainer}>
-        <Button
-          title="Clock"
+      <View style={styles.bodyContainer}>
+        <Text style={styles.baseText}>StopWatch</Text>
+        <Text style={styles.baseText}>{formatCount(count)}</Text>
+        <View style={styles.stopwatchContainer}>
+          <Pressable
+            style={styles.stopwatchButtons}
+            onPress={() => setRunning(!isRunning)}
+          >
+            <Text style={styles.baseText}>{isRunning ? "Stop" : "Start"}</Text>
+          </Pressable>
+          <Pressable
+            style={styles.stopwatchButtons}
+            onPress={() => {
+              setRunning(false);
+              setCount(0);
+            }}
+          >
+            <Text style={styles.baseText}>Reset</Text>
+          </Pressable>
+        </View>
+      </View>
+
+      {/* Move Navigation button to own folder */}
+      <View style={styles.navButtonContainer}>
+        <Pressable
           onPress={() => navigation.navigate("Clock")}
-        />
-        <Button
-          title="StopWatch"
+          style={styles.navButton}
+        >
+          <Text style={styles.navText}>Clock</Text>
+        </Pressable>
+        <Pressable
           onPress={() => navigation.navigate("StopWatch")}
-        />
-        <Button
-          title="Timer"
+          style={styles.navButton}
+        >
+          <Text style={styles.navText}>StopWatch</Text>
+        </Pressable>
+        <Pressable
           onPress={() => navigation.navigate("Timer")}
-        />
+          style={styles.navButton}
+        >
+          <Text style={styles.navText}>Timer</Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -30,24 +79,42 @@ export default function StopWatch( {navigation} :any ) {
 
 const styles = StyleSheet.create({
   parentContainer: {
-    flex: 1, // Make the parent container take up the whole screen
-    flexDirection: "column", // Set the flex direction to column to stack content vertically
+    flex: 1,
+    flexDirection: "column",
   },
   bodyContainer: {
     backgroundColor: "#000000",
-    flex: 1, // Make the body container take up the remaining space after the button
+    flex: 1,
+  },
+  stopwatchContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    width: "100%",
+  },
+  stopwatchButtons: {
+    flex: 1,
+  },
+  baseText: {
+    color: "#66b6d2",
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 40,
   },
   navButtonContainer: {
     // Remove styling that overlaps with parent container styling
-    justifyContent: "flex-end", // Align button at the bottom
-    alignItems: "center",
+    flexDirection: "row", // Arrange buttons horizontally in a line
+    justifyContent: "space-evenly",
     backgroundColor: "#000000",
     width: "100%",
     height: 30,
   },
-  baseText: {
-    color: "#f03f44",
+  navButton: {
+    flex: 1,
+  },
+  navText: {
+    color: "#66b6d2",
     textAlign: "center",
     fontWeight: "bold",
+    fontSize: 20,
   },
 });
