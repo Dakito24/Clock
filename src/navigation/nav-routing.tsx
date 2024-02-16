@@ -1,5 +1,3 @@
-import { StatusBar } from "expo-status-bar";
-
 import StopWatch from "../screens/StopWatch/stopwatch";
 import Clock from "../screens/Clock/clock";
 import { NavigationContainer } from "@react-navigation/native";

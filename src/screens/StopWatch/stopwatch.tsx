@@ -6,7 +6,6 @@ export default function StopWatch({ navigation }: any) {
   const [isRunning, setRunning] = useState(false);
 
   useEffect(() => {
-    console.log("useEffect", isRunning);
     let intervalId: NodeJS.Timeout | undefined;
 
     if (isRunning) {
