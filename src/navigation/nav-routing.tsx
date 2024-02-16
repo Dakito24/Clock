@@ -10,7 +10,7 @@ export default function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Timer"
+        initialRouteName="Clock"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Clock" component={Clock} />

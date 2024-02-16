@@ -15,7 +15,7 @@ export default function Timer({ navigation }: any) {
   const [hours, setHours] = useState(0);
 
   const [isTimerStarted, setTimerStarted] = useState(false); //Start Button Pressed
-  const [isRunning, setRunning] = useState(false); //Is it actively running
+  const [isRunning, setRunning] = useState(false); //Timer is running
 
   useEffect(() => {
     hoursRef.current =
@@ -24,9 +24,10 @@ export default function Timer({ navigation }: any) {
       inputMinutes === "" || !parseInt(inputMinutes)
         ? 0
         : parseInt(inputMinutes);
-    secondsRef.current;
-    inputSeconds === "" || !parseInt(inputSeconds) ? 0 : parseInt(inputSeconds);
-    secondsRef.current = parseInt(inputSeconds);
+    secondsRef.current =
+      inputSeconds === "" || !parseInt(inputSeconds)
+        ? 0
+        : parseInt(inputSeconds);
 
     setSeconds(secondsRef.current);
     setMinutes(minutesRef.current);
@@ -38,7 +39,6 @@ export default function Timer({ navigation }: any) {
 
     if (isRunning) {
       intervalId = setInterval(() => {
-        console.log(hoursRef.current, minutesRef.current, secondsRef.current);
         if (secondsRef.current > 0) {
           secondsRef.current = secondsRef.current - 1;
         } else if (minutesRef.current !== 0) {
@@ -64,7 +64,6 @@ export default function Timer({ navigation }: any) {
   }, [isRunning]);
 
   const start = () => {
-    console.log(hoursRef.current, minutesRef.current, secondsRef.current);
     setTimerStarted(true);
     setRunning(true);
   };
@@ -175,6 +174,7 @@ const styles = StyleSheet.create({
   bodyContainer: {
     backgroundColor: "#000000",
     flex: 1,
+    justifyContent: "center",
   },
   inputContainer: {
     flexDirection: "row",

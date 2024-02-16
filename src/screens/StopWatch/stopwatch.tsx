@@ -51,7 +51,7 @@ export default function StopWatch({ navigation }: any) {
         </View>
       </View>
 
-      {/* Move Navigation button to own folder */}
+      {/* To Do Move Navigation button to own folder */}
       <View style={styles.navButtonContainer}>
         <Pressable
           onPress={() => navigation.navigate("Clock")}
@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
   bodyContainer: {
     backgroundColor: "#000000",
     flex: 1,
+    justifyContent: "center",
   },
   stopwatchContainer: {
     flexDirection: "row",
@@ -100,8 +101,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
   navButtonContainer: {
-    // Remove styling that overlaps with parent container styling
-    flexDirection: "row", // Arrange buttons horizontally in a line
+    flexDirection: "row",
     justifyContent: "space-evenly",
     backgroundColor: "#000000",
     width: "100%",

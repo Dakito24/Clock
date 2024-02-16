@@ -58,12 +58,13 @@ export default function Clock({ navigation }: any) {
 
 const styles = StyleSheet.create({
   parentContainer: {
-    flex: 1, // Make the parent container take up the whole screen
+    flex: 1,
     flexDirection: "column", // Set the flex direction to column to stack content vertically
   },
   bodyContainer: {
     backgroundColor: "#000000",
-    flex: 1, // Make the body container take up the remaining space after the button
+    flex: 1,
+    justifyContent: "center",
   },
   baseText: {
     color: "#66b6d2",
@@ -72,8 +73,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
   navButtonContainer: {
-    // Remove styling that overlaps with parent container styling
-    flexDirection: "row", // Arrange buttons horizontally in a line
+    flexDirection: "row",
     justifyContent: "space-evenly",
     backgroundColor: "#000000",
     width: "100%",
