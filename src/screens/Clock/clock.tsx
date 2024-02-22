@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, Pressable } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
+import NavButton from "../../navigation/nav-buttons";
 
 export default function Clock({ navigation }: any) {
   const [time, setTime] = useState(new Date());
@@ -9,8 +10,6 @@ export default function Clock({ navigation }: any) {
       setTime(new Date());
     }, 1000);
   }, [time]);
-
-  // To Do get weather
 
   const formatTime = (time: Date) => {
     const seconds = time.getSeconds();
@@ -32,26 +31,7 @@ export default function Clock({ navigation }: any) {
           {formatTime(time)}
         </Text>
       </View>
-      <View style={styles.navButtonContainer}>
-        <Pressable
-          onPress={() => navigation.navigate("Clock")}
-          style={styles.navButton}
-        >
-          <Text style={styles.navText}>Clock</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => navigation.navigate("StopWatch")}
-          style={styles.navButton}
-        >
-          <Text style={styles.navText}>StopWatch</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => navigation.navigate("Timer")}
-          style={styles.navButton}
-        >
-          <Text style={styles.navText}>Timer</Text>
-        </Pressable>
-      </View>
+      <NavButton navigation={navigation} />
     </View>
   );
 }
@@ -71,21 +51,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 40,
-  },
-  navButtonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    backgroundColor: "#000000",
-    width: "100%",
-    height: 30,
-  },
-  navButton: {
-    flex: 1,
-  },
-  navText: {
-    color: "#66b6d2",
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 20,
-  },
+  }
 });

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Text, View, StyleSheet, Pressable, TextInput } from "react-native";
+import NavButton from "../../navigation/nav-buttons";
 
 export default function Timer({ navigation }: any) {
   const [inputSeconds, setInputSeconds] = useState("");
@@ -141,27 +142,7 @@ export default function Timer({ navigation }: any) {
         </View>
       </View>
 
-      {/* Nav Button */}
-      <View style={styles.navButtonContainer}>
-        <Pressable
-          onPress={() => navigation.navigate("Clock")}
-          style={styles.navButton}
-        >
-          <Text style={styles.navText}>Clock</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => navigation.navigate("StopWatch")}
-          style={styles.navButton}
-        >
-          <Text style={styles.navText}>StopWatch</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => navigation.navigate("Timer")}
-          style={styles.navButton}
-        >
-          <Text style={styles.navText}>Timer</Text>
-        </Pressable>
-      </View>
+      <NavButton navigation={navigation} />
     </View>
   );
 }
@@ -206,21 +187,5 @@ const styles = StyleSheet.create({
   },
   timerButton: {
     flex: 1,
-  },
-  navButtonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    backgroundColor: "#000000",
-    width: "100%",
-    height: 30,
-  },
-  navButton: {
-    flex: 1,
-  },
-  navText: {
-    color: "#66b6d2",
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 20,
-  },
+  }
 });
